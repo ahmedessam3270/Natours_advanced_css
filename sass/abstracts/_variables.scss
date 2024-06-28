@@ -9,7 +9,10 @@ $color-white: #fff;
 $color-black: #000;
 $color-grid-background: #eee;
 
+// FONT
+$default-font-size: 1.6rem;
+
 // GRID
-$grid-width: 114rem;
+$grid-width: 100rem; // I've changed this value from  114 rem to 100rem
 $gutter-horizontal: 6rem;
 $gutter-vertical: 8rem;
