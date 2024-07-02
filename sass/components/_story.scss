@@ -1,0 +1,65 @@
+.story {
+  width: 75%;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  margin: 0 auto;
+  background-color: rgba($color-white, 0.6);
+  padding: 5rem;
+  padding-left: 8rem;
+  border-radius: 3px;
+  font-size: $default-font-size;
+  transform: skewX(-12deg);
+
+  // this will not gonna work as there is can't 2 transform declarations apply to the same element
+  // and the shape we apply a transform translate to it, and this translate gets precendence over skew
+  // to solve this we define first with the shape the skew along with translate in the transform property in advance
+  // and after the skewing takes place the shape will be in the correct position now and the text we will assign it manualy
+  // so instead of doing the below snippet we split it one to the shape and one to the text in their definition
+  //   & > * {
+  //     transform: skewX(12deg);
+  //   }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    transform: translateX(-3rem) skewX(12deg);
+  }
+  &__img {
+    height: 100%;
+    transform: translateX(-4rem) scale(1.4);
+    backface-visibility: hidden;
+    transition: all 0.5s;
+  }
+
+  &__text {
+    transform: skewX(12deg);
+    backface-visibility: hidden;
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    text-align: center;
+    color: $color-white;
+    font-size: 1.7rem;
+    opacity: 0;
+    backface-visibility: hidden;
+    transition: all 0.5s;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
+  }
+}
